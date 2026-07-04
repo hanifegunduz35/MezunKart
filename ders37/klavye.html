@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p></p>
+    
+    <script>
+        // window.addEventListener("keydown",function(e){
+        //     document.write(e.key) // hangisine bastığımı verir
+        //     document.write(e.code) // konumuna göre verir
+        // })
+
+        //  window.addEventListener("keydown",(r)=>{
+        //     document.write(r.key) 
+        //     document.write(r.code) 
+        // }) 
+
+        let parag=document.querySelector("p")
+        window.addEventListener("keydown",(e)=>{
+            parag.innerHTML=`
+            <ol>
+                <li> basılan tuş : ${e.key} </li>
+                <li> kod : ${e.code} </li>
+                </ol>`
+        })
+
+    </script>
+</body>
+</html>

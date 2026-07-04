@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+            position: relative;
+            top: 10px;
+            left: 30px;
+            display: inline-block;
+            /* span inline bir etiket olduğu için kullanıldı. */
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 5px;
+            animation: bomerang 4s linear 2s 1 normal;
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+            /* iteration-count = infinite (sonsuz kez yapmak için) */
+            /* direction animasyonun oynatılma yönünü belirler. reverse=tam tersi yönde */
+            /* fill-mode animasyonun son halini belirler */
+        }
+        @keyframes bomerang{
+            0%{
+                transform: rotate(25deg);
+                background-color: yellow;
+            }
+            25%{
+                left: 100px;
+                background-color: yellow;
+                
+            }
+            50%{
+                left: 200px;
+                transform: rotate(0deg);
+                background-color: yellow;
+            }
+            75%{
+                transform: rotate(180deg);
+
+            }
+            100%{
+                transform: rotate(360deg);
+
+            }
+        }
+    </style>
+</head>
+<body>
+    <span>CSS</span>
+</body>
+</html>

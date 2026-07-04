@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- dom() Document Object Model  -->
+    <h1 id="baslik">Bu bir başlık etiketidir</h1>
+
+    <p class="parag">Bu bir paragraf</p>
+    <h2 class="parag">bu 2. başlık</h2>
+    <ul>
+        <li>lorem</li>
+        <li>Sit</li>
+        <li>Perferendis</li>
+        <li>Aut</li>
+   </ul>
+   
+   <ul>
+    <li>Quaerlat</li>
+    <li>Valupt1</li>
+    <li>Dct1a</li>
+   </ul>
+
+<!-- .conteiner>p*4>lorem2 -->
+   <div class="container"> 
+    <p>Lorem, ipsum.</p>
+    <p>Doloremque, accusamus!</p>
+    <p>Libero, laudantium!</p>
+    <p>Consequuntur, mollitia?</p>
+   </div>
+
+
+    <script>
+        let baslik = document.getElementById("baslik")
+        // document.getElemantById("id")= etiketin idsine göre eleman seçmeye yarar
+        console.log(baslik.innerHTML)
+        baslik.innerHTML = "bu bir denemedir"
+
+        let paragraf = document.getElementsByClassName("parag")
+        // getElementsByClassName("parag") etiketin clasına göre eleman seçmeye yarar fakat hangi elemana işlem yapmak istiyorsak onun index numarasına göre işlem yapmamız gerekir.
+        console.log(paragraf[0].innerHTML)
+        console.log(paragraf[1].innerHTML)
+
+        let liste= document.getElementsByTagName("li")
+        // getElementsByTagName etikete göre eleman seçer hangi elemana işlem yapmak istiyorsK index numarasına göre işlem yapmsmız gerekir 
+        console.log(liste[5].innerHTML)
+
+        let list=document.querySelector(".parag")
+        // querySelector parag clasına ait ilk elemanı seçer
+        console.log(list.innerHTML)
+
+        let lis=document.querySelectorAll(".parag")
+        // querySelectorAll parag clasına sahip bütüm elemanları seçer
+        console.log(lis[0].innerHTML)
+
+        let listeler=document.querySelectorAll("li")
+        listeler[2].innerHTML="bu sadece htmlin içini değiştirir"
+        console.log(liste[2].innerHTML)
+
+        let baslikk=document.querySelector("#baslik")
+        console.log(baslikk.innerHTML)
+
+        let paragraflar=document.querySelectorAll(".container p")
+
+        paragraflar.forEach(x => {
+            console.log(x.innerHTML)
+            
+        });
+
+
+
+
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            /* HTML sıfırlama CSSleri */
+            margin: 0;
+            bottom: 0;
+            box-sizing: border-box;
+        }
+        nav{
+            background-color: rgb(5, 44, 44);
+            
+        }
+        ul{
+            display: flex;
+            /* flex yapısı içindeki verilen etiketin içerisindeki etiketleri daha esnek kutu modeline çevirir ve yapılar yan yana gelir ve pozisyonlandırması kolaylaşır */
+            justify-content: center; /*space-between */
+        }
+        li{
+            padding: 10px;
+
+
+            list-style: none;
+
+        }
+        a{
+            color: white;
+        }
+        li:hover{
+            border: 1px dotted white;
+            border-radius: 5px;
+            background-color: red;
+
+        }
+        main{
+            display: flex;
+        }
+        div{
+            background-color: rgb(150, 211, 190);
+            width: 100%;
+
+        }
+        img{
+            width: 100%;
+        }
+        p{
+            font-size: 20px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="">Anasayfa</a></li>
+            <li><a href="">Hakkımızda</a></li>
+            <li><a href="">İletişim</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div>
+            <img src="../ders7/resim2/back.jpg" alt="">
+        </div>
+        <div>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, eos.</p>
+        </div>
+    </main>
+</body>
+</html>

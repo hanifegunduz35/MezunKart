@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+
+    <style>
+        img{
+            display: none;
+        }
+
+        #btn{
+            display: none;
+        }
+        #btn3{
+            display: none;
+        }
+    </style>
+
+<body>
+    <!-- <ul id="deneme">
+        <li>Lorem.</li>
+        <li>Ipsum?</li>
+        <li>Sunt.</li>
+        <li>Fugit?</li>
+    </ul> -->
+
+    <img src="bir.jpg"  id="resim" alt="" width="200px">
+    <button id="btn">Değiştir</button>
+    <button id="btn2">Göster</button>
+    <button id="btn3">Kaldır</button>
+
+    <script>
+        // let list=document.querySelectorAll("#deneme li")
+        // list.forEach(function(item,index){
+        //     console.log(`${index+1}:${item.innerHTML}`)
+        // })
+
+
+        let resim=document.querySelector("#resim")
+        let button=document.querySelector("#btn")
+        let button2=document.querySelector("#btn2")
+        let button3=document.querySelector("#btn3")
+        
+        button2.onclick=function(){
+            button.style.display="block"
+            resim.style.display="block"
+            button2.style.display="none"
+            button3.style.display="block"
+        }
+
+        button.onclick=function(){
+
+            if(resim.getAttribute("src")=="bir.jpg"){
+                resim.setAttribute("src","iki.jpg")
+            }else{
+                resim.setAttribute("src","bir.jpg")
+            }
+            
+        }
+
+         button3.onclick=function(){
+            button.style.display="none"
+            resim.style.display="none"
+            button2.style.display="block"
+            button3.style.display="none"
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>0</p>
+    <!-- <button>Tıkla</button> -->
+    <button id="btn1">arttır</button>
+    <button id="btn2">azalt</button>
+
+    <script>
+        // let element = document.querySelector("button")
+        let element1 = document.querySelector("#btn1")
+        let element2 = document.querySelector("#btn2")
+
+        let parag = document.querySelector("p")
+        let sayi = 0
+
+        function arttır() {
+            if (sayi < 10) {
+                sayi++
+                parag.innerText = sayi
+            }
+        }
+        element1.addEventListener("click", arttır)
+
+        function azalt() {
+            if (sayi > 0) {
+                sayi--
+                parag.innerText = sayi
+            }
+        }
+        element2.addEventListener("click", azalt)
+
+        // element1.addEventListener("click", function () {
+
+        //     sayi++
+        //     parag.innerHTML=sayi
+        // })
+        // element2.addEventListener("click", function () {
+
+        //     sayi--
+        //     parag.innerHTML=sayi
+        // })
+
+
+        // element1.addEventListener("click", function () {
+
+        //     sayi++
+        //     // console.log(sayi)
+        //     // parag.innerHTML+=sayi
+
+        //     let baslik=document.createElement("p")
+        //     baslik.innerHTML=sayi
+        //     parag.appendChild(baslik)
+        //     this.style.backgroundColor="pink"  // this elementi temsil eder
+
+        // })
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
