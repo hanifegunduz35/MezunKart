@@ -764,23 +764,30 @@
             .navbar-main {
                 flex-direction: column;
                 height: auto;
-                padding: 10px;
+                padding: 10px 10px 10px 35px;
                 gap: 10px;
             }
-            .navbar-brand-section, .navbar-user-section {
+            .navbar-left, .navbar-right {
                 width: 100%;
                 justify-content: center;
+                flex-wrap: wrap;
+            }
+            .sub-header {
+                padding-left: 35px;
             }
             .main-content {
                 margin-top: 20px;
+                flex-direction: column;
+                align-items: center;
             }
             .action-card {
                 width: 100%;
                 max-width: 300px;
             }
             .cv-container {
+                margin-left: 0;
+                padding: 10px;
                 flex-direction: column;
-                height: auto;
             }
             .cv-sidebar {
                 width: 100%;
@@ -797,11 +804,38 @@
                 padding: 10px 15px;
             }
             .cv-content-area {
-                padding: 15px;
+                padding: 10px;
             }
             .warning-banner {
                 font-size: 0.75rem;
                 padding: 10px;
+            }
+            .mock-card {
+                width: 100%;
+                max-width: 360px;
+            }
+            .left-vertical-label {
+                display: none;
+            }
+            .status-steps {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+            .status-step {
+                flex-direction: row;
+                gap: 10px;
+                width: 100%;
+            }
+            .status-steps::before, .status-step-line-progress {
+                display: none;
+            }
+            .status-step-label {
+                margin-top: 0;
+            }
+            .cv-yellow-banner {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
