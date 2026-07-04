@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     
+    <!-- fonksiyonlar -->
+    <!-- forEach -->
+
+
+
+</body>
+
+<script>
+
+    // let dizi=[1,2,3,4,5]
+    // dizi.forEach(function(dizi,index,eleman){
+    //     eleman[index]=dizi*2
+    // })
+    // console.log(dizi)
+
+    // let a=prompt("bir isim giriniz")
+    // let isimler=["emre","ahmet"]
+    // isimler.push(a)
+
+    // isimler.forEach(x=>{
+    //     console.log("merhaba"+x)
+    // })
+
+    // let sayilar=[2,3,9,7]
+    // let kare=[]
+
+    // sayilar.forEach(x=>{
+    //     kare.push(x*x)
+    // })
+    // console.log(kare)
+    // console.log(sayilar)
+
+    // let list=[10,5,17,150,41]
+
+    // list.forEach(x=>{
+    //     if(x%2==0)
+    //     console.log(x)
+    //     }
+    // )
+
+    let sepet=[
+        {urun:"laptop", fiyat:50000}, {urun:"fare", fiyat:5000}, {urun:"kulaklık", fiyat:15000}
+    ]
+    let tutar=0
+
+    sepet.forEach(x=>{
+        tutar+=x.fiyat
+        console.log(`${x.urun}"ün fiyatı ${x.fiyat}`)
+    })
+    console.log(tutar)
+
+
+
+</script>
+
+</html>

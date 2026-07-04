@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğrenci Bilgi Ekranı & Özgeçmiş Sistemi</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333333;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* -------------------------------------------------------------
+           Header / Navbar CSS
+           ------------------------------------------------------------- */
+        .navbar-main {
+            height: 42px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 32px;
+            /* Dikey Menü Genişliği Kadar */
+            padding-right: 15px;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            height: 100%;
+        }
+
+        .nav-dropdown {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 16px;
+            border-right: 1px solid #cbd5e1;
+            font-size: 0.8rem;
+            color: #475569;
+            cursor: pointer;
+            height: 100%;
+            transition: background-color 0.2s;
+            user-select: none;
+            font-weight: 500;
+        }
+
+        .nav-dropdown:hover {
+            background-color: #f1f5f9;
+        }
+
+        .nav-dropdown i {
+            font-size: 0.95rem;
+        }
+
+        .nav-icon-btn {
+            color: #475569;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+        }
+
+        .nav-icon-btn:hover {
+            color: #0f172a;
+            background-color: #e2e8f0;
+        }
+
+        /* -------------------------------------------------------------
+           Vertical Menu Tab CSS
+           ------------------------------------------------------------- */
+        .vertical-menu-tab {
+            width: 32px;
+            background-color: #e2e8f0;
+            border-right: 1px solid #cbd5e1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 8px;
+            height: 84px;
+            /* Navbar + Sub-header Yüksekliği */
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .vertical-menu-icon {
+            font-size: 1.1rem;
+            color: #475569;
+            cursor: pointer;
+        }
+
+        .vertical-menu-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 0.65rem;
+            color: #475569;
+            margin-top: 6px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            user-select: none;
+        }
+
+        /* -------------------------------------------------------------
+           Sub-Header CSS
+           ------------------------------------------------------------- */
+        .sub-header {
+            height: 42px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            padding-left: 32px;
+        }
+
+        .home-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 100%;
+            border-right: 1px solid #cbd5e1;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .home-btn:hover {
+            background-color: #f1f5f9;
+        }
+
+        .home-btn i {
+            color: #0284c7;
+            font-size: 1.1rem;
+        }
+
+        .pink-info-text {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #be185d;
+            padding-left: 15px;
+            letter-spacing: 0.2px;
+        }
+
+        /* -------------------------------------------------------------
+           Warning Banner CSS
+           ------------------------------------------------------------- */
+        .warning-container {
+            display: flex;
+            justify-content: center;
+            padding: 30px 15px 0 15px;
+        }
+
+        .warning-banner {
+            background-color: #fde8e8;
+            border: 1px solid #fbd5d5;
+            color: #9b1c1c;
+            font-size: 0.8rem;
+            padding: 12px 24px;
+            border-radius: 4px;
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            line-height: 1.5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            font-weight: 500;
+        }
+
+        /* -------------------------------------------------------------
+           Main Content Grid Cards CSS
+           ------------------------------------------------------------- */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            margin-top: 60px;
+            padding: 0 15px;
+        }
+
+        .action-card {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            width: 220px;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            padding: 15px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+        }
+
+        .action-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: #94a3b8;
+            transform: translateY(-2px);
+        }
+
+        .card-icon {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #475569;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* -------------------------------------------------------------
+           Özgeçmiş Düzenleme Sayfası (CV Edit) CSS
+           ------------------------------------------------------------- */
+        .cv-sidebar {
+            width: 200px;
+            border-right: 1px solid #cbd5e1;
+            background-color: #ffffff;
+            height: calc(100vh - 42px);
+            position: sticky;
+            top: 42px;
+            padding: 10px 0;
+            float: left;
+        }
+
+        .cv-sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            font-size: 0.78rem;
+            color: #475569;
+            font-weight: 500;
+            cursor: pointer;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background 0.2s;
+        }
+
+        .cv-sidebar-item:hover {
+            background-color: #f8fafc;
+        }
+
+        .cv-sidebar-item.active {
+            background-color: #f1f5f9;
+            color: #be185d;
+            border-left: 3px solid #be185d;
+            font-weight: 600;
+        }
+
+        .cv-container {
+            margin-left: 200px;
+            padding: 20px;
+            background-color: #ffffff;
+            min-height: calc(100vh - 42px);
+        }
+
+        .cv-yellow-banner {
+            background-color: #fef3c7;
+            border: 1px solid #fde68a;
+            color: #92400e;
+            font-size: 0.8rem;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .profile-img-container {
+            width: 130px;
+            height: 160px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            overflow: hidden;
+            background-color: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-upload-btn {
+            cursor: pointer;
+            color: #0d6efd;
+            font-size: 1.1rem;
+            margin-top: 5px;
+            display: inline-block;
+            transition: color 0.2s;
+        }
+
+        .profile-upload-btn:hover {
+            color: #0a58ca;
+        }
+
+        .cv-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .cv-value {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .cv-value-blue {
+            color: #1d4ed8;
+        }
+
+        .fake-editor-toolbar {
+            border: 1px solid #cbd5e1;
+            background-color: #f8fafc;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            padding: 6px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .fake-editor-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #475569;
+            font-size: 0.9rem;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .fake-editor-btn:hover {
+            background-color: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .fake-editor-textarea {
+            width: 100%;
+            height: 100px;
+            border: 1px solid #cbd5e1;
+            border-top: none;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            padding: 10px;
+            font-size: 0.85rem;
+            outline: none;
+            resize: vertical;
+        }
+
+        .fake-editor-textarea:focus {
+            border-color: #a5f3fc;
+        }
+
+        .cv-checkbox-group label {
+            font-size: 0.8rem;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        /* -------------------------------------------------------------
+           Mezun Kart Başvuru Formu (Application Form) CSS
+           ------------------------------------------------------------- */
+        .app-form-card {
+            max-width: 600px;
+            margin: 40px auto;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* -------------------------------------------------------------
+           Sidebar / Footer Labels CSS
+           ------------------------------------------------------------- */
+        .left-vertical-label {
+            position: absolute;
+            bottom: 120px;
+            left: 15px;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #be185d;
+            letter-spacing: 1px;
+            user-select: none;
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        .bottom-right-label {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: #be185d;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-top-left-radius: 4px;
+            letter-spacing: 0.5px;
+            user-select: none;
+            z-index: 1;
+        }
+
+        /* Durum Yönetimi */
+        .state-section {
+            display: none;
+        }
+
+        .state-section.active {
+            display: block;
+        }
+
+        /* -------------------------------------------------------------
+           Mezun Kart Tasarımı ve Durum Takipçisi CSS
+           ------------------------------------------------------------- */
+        .mock-card-container {
+            perspective: 1000px;
+        }
+
+        .mock-card {
+            width: 360px;
+            height: 230px;
+            background-color: #e5e7eb;
+            background-image:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border-radius: 8px;
+            padding: 15px;
+            color: #111827;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.5s ease, box-shadow 0.3s ease;
+        }
+
+        .mock-card:hover {
+            transform: translateY(-5px) rotateY(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .mock-card.lost {
+            background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
+            box-shadow: 0 10px 25px rgba(71, 85, 105, 0.3);
+            opacity: 0.85;
+        }
+
+        /* Abstract Red Shapes Background */
+        .mock-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -20px;
+            width: 120px;
+            height: 100%;
+            background: #be185d;
+            z-index: 0;
+            opacity: 0.9;
+            clip-path: polygon(0 0, 40% 0, 100% 50%, 40% 100%, 0 100%);
+        }
+
+        .mock-card::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -20px;
+            width: 250px;
+            height: 200px;
+            background: #be185d;
+            z-index: 0;
+            opacity: 0.95;
+            clip-path: polygon(100% 0, 100% 100%, 0 100%, 40% 60%, 70% 30%);
+        }
+
+        .mc-shape-secondary {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: #be185d;
+            z-index: 0;
+            clip-path: polygon(100% 50%, 100% 100%, 50% 100%);
+        }
+
+        /* Foreground Wrapper */
+        .mc-content-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        /* Header Area */
+        .mc-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .mc-logo {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .mc-logo-icon {
+            width: 20px;
+            height: 24px;
+            background: #fff;
+            border-left: 3px solid #be185d;
+            border-bottom: 3px solid #be185d;
+            border-radius: 0 8px 8px 8px;
+        }
+
+        .mc-logo-text {
+            font-size: 0.5rem;
+            font-weight: 900;
+            color: #be185d;
+            line-height: 1.1;
+            letter-spacing: 0.2px;
+            text-align: left;
+        }
+
+        .mc-title-container {
+            text-align: right;
+        }
+
+        .mc-title-tr {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #be185d;
+            margin-bottom: -2px;
+        }
+
+        .mc-title-en {
+            font-size: 0.55rem;
+            font-style: italic;
+            color: #4b5563;
+        }
+
+        /* Body Area */
+        .mc-body {
+            display: flex;
+            justify-content: space-between;
+            flex: 1;
+        }
+
+        .mc-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            flex: 1;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .mc-field {
+            line-height: 1.1;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .mc-label {
+            font-size: 0.55rem;
+            font-weight: 800;
+            color: #111827;
+        }
+
+        .mc-label span {
+            font-weight: 400;
+            font-style: italic;
+            color: #4b5563;
+        }
+
+        .mc-value {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #374151;
+            margin-top: 2px;
+            min-height: 12px;
+        }
+
+        .mc-photo {
+            width: 85px;
+            height: 110px;
+            border: 2px solid #be185d;
+            background-color: #e5e7eb;
+            padding: 2px;
+            margin-top: 5px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-self: flex-end;
+            position: relative;
+        }
+
+        .mc-photo i {
+            font-size: 4rem;
+            color: #6b7280;
+        }
+
+        /* Lost Overlay */
+        .mock-card-overlay-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.85);
+            color: #ef4444;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 10;
+            border-radius: 8px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* Step Tracker */
+        .status-steps-container {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 24px 20px;
+            margin-bottom: 20px;
+        }
+
+        .status-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .status-steps::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 5%;
+            right: 5%;
+            height: 3px;
+            background-color: #e2e8f0;
+            z-index: 1;
+        }
+
+        .status-step-line-progress {
+            position: absolute;
+            top: 15px;
+            left: 5%;
+            height: 3px;
+            background-color: #be185d;
+            z-index: 2;
+            transition: width 0.4s ease;
+            width: 0%;
+            /* JS ile güncellenecek */
+        }
+
+        .status-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 3;
+            flex: 1;
+        }
+
+        .status-step-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            border: 3px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .status-step.active .status-step-icon {
+            border-color: #be185d;
+            background-color: #be185d;
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(190, 24, 93, 0.4);
+        }
+
+        .status-step.completed .status-step-icon {
+            border-color: #be185d;
+            background-color: #ffffff;
+            color: #be185d;
+        }
+
+        .status-step-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #64748b;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .status-step.active .status-step-label,
+        .status-step.completed .status-step-label {
+            color: #0f172a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =================================================================
+         DURUM 1: OBS ÖĞRENCİ BİLGİ SİSTEMİ DASHBOARD
+         ================================================================= -->
+    <div id="dashboard-state" class="state-section active">
+
+        <!-- DIKEY MENU TABI -->
+        <div class="vertical-menu-tab">
+            <i class="bi bi-list vertical-menu-icon"></i>
+            <div class="vertical-menu-text">menü</div>
+        </div>
+
+        <!-- ÜST NAV BAR -->
+        <nav class="navbar-main">
+            <div class="navbar-left">
+                <div class="nav-dropdown">
+                    <i class="bi bi-mortarboard-fill"></i>
+                    <span>Akademik Program Seçiniz</span>
+                    <i class="bi bi-chevron-down ms-1 text-muted" style="font-size: 0.7rem;"></i>
+                </div>
+                <div class="nav-dropdown">
+                    <i class="bi bi-eye"></i>
+                    <span>Transkript</span>
+                    <i class="bi bi-chevron-down ms-1 text-muted" style="font-size: 0.7rem;"></i>
+                </div>
+                <div class="nav-dropdown">
+                    <i class="bi bi-three-dots-vertical"></i>
+                    <span>Diğer</span>
+                    <i class="bi bi-chevron-down ms-1 text-muted" style="font-size: 0.7rem;"></i>
+                </div>
+            </div>
+            <div class="navbar-right">
+                <div class="nav-icon-btn" title="Yardım"><i class="bi bi-question-circle"></i></div>
+                <div class="nav-icon-btn" title="Takvim"><i class="bi bi-calendar3"></i></div>
+                <div class="nav-icon-btn" title="Dil / Dünya"><i class="bi bi-globe"></i></div>
+                <div class="nav-icon-btn" title="Uygulamalar"><i class="bi bi-grid-3x3-gap"></i></div>
+                <div class="nav-icon-btn" title="Kilitle / Çıkış"><i class="bi bi-lock"></i></div>
+            </div>
+        </nav>
+
+        <!-- ALT BİLGİ BAR -->
+        <div class="sub-header">
+            <div class="home-btn" title="Ana Sayfa">
+                <i class="bi bi-house-door-fill"></i>
+            </div>
+            <div class="pink-info-text">
+                Y200237014 - Fen Bilimleri Enstitüsü - Bilgisayar Mühendisliği Anabilim Dalı - Yazılım Mühendisliği
+                Tezli Yüksek Lisans Programı - Eğitim Dönemi : 6
+            </div>
+        </div>
+
+        <!-- UYARI BANNERI -->
+
+
+        <!-- KART MENÜLERİ -->
+        <main class="main-content">
+            <!-- Sol Sütun -->
+            <div class="d-flex gap-3">
+                <div class="action-card" onclick="alert('Belge Talebi ekranına yönlendiriliyorsunuz.')">
+                    <div class="card-icon">
+                        <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#007bff" stroke-width="2.2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3.5" fill="#007bff" />
+                            <path d="M12 8.5V2M12 2L9 5M12 2L15 5" />
+                            <path d="M12 15.5v6.5M12 22l-3-3M12 22l3-3" />
+                            <path d="M8.5 12H2M2 12l3-3M2 12l3 3" />
+                            <path d="M15.5 12h6.5M22 12l-3-3M22 12l3 3" />
+                        </svg>
+                    </div>
+                    <div class="card-label">Belge Talebi</div>
+                </div>
+
+                <!-- TIKLANDIĞINDA UYARI AÇACAK KART -->
+                <div class="action-card" onclick="triggerCardWarning()">
+                    <div class="card-icon">
+                        <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#007bff" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="5" width="20" height="14" rx="2" />
+                            <path d="M12 8l4 2-4 2-4-2 4-2z" fill="#007bff" />
+                            <path d="M8 10v3c0 .5.9 1 2 1s2-.5 2-1v-3" />
+                            <line x1="6" y1="16" x2="10" y2="16" />
+                            <line x1="14" y1="16" x2="18" y2="16" />
+                        </svg>
+                    </div>
+                    <div class="card-label">Mezun Kart Başvurusu</div>
+                </div>
+            </div>
+
+            <!-- Sağ Sütun -->
+            <div class="d-flex flex-column gap-3">
+                <div class="action-card"
+                    onclick="alert('Bütünleşik Yüksek Lisans Başvurusu ekranına yönlendiriliyorsunuz.')">
+                    <div class="card-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.5 18.5L5 22L2 19L5.5 15.5L8.5 18.5Z" fill="#007bff" stroke="#007bff"
+                                stroke-width="1.8" stroke-linejoin="round" />
+                            <path
+                                d="M19.5 4.5C18.4 3.4 16.6 3.4 15.5 4.5L7.5 12.5C7.2 12.8 7 13.2 6.9 13.6L5.5 18.5C5.4 19 5.9 19.5 6.4 19.4L11.3 18C11.7 17.9 12.1 17.7 12.4 17.4L20.4 9.4C21.5 8.3 21.5 6.5 20.4 5.4L19.5 4.5Z"
+                                stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10 14L14 10" stroke="#007bff" stroke-width="1.8" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="card-label">Bütünleşik Yüksek Lisans Başvurusu</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================================================================
+         DURUM 2: CV / ÖZGEÇMİŞ OLUŞTURMA VE DÜZENLEME SAYFASI
+         ================================================================= -->
+    <div id="cv-state" class="state-section">
+
+        <!-- CV Navbarı -->
+        <nav class="navbar-main" style="padding-left: 10px;">
+            <div class="d-flex align-items-center gap-2">
+                <!-- Sol İKÇÜ benzeri Logo -->
+                <div
+                    style="background-color: #be185d; color: white; padding: 4px 10px; font-weight: bold; border-radius: 4px; font-size: 0.95rem; font-family: 'Outfit';">
+                    İKÇÜ</div>
+                <!-- Ana Sayfa Butonu -->
+                <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1 bg-white text-dark ms-2"
+                    onclick="switchToDashboard()"
+                    style="font-size: 0.78rem; font-weight: 600; border: 1px solid #cbd5e1;">
+                    <i class="bi bi-house-door-fill text-muted"></i> ANA SAYFA
+                </button>
+                <!-- Kaydet Butonu -->
+                <button class="btn btn-success btn-sm d-flex align-items-center gap-1 ms-2 px-3"
+                    onclick="saveCVChanges()" style="font-size: 0.78rem; font-weight: 600; background-color: #198754;">
+                    <i class="bi bi-check-square-fill"></i> Değişiklikleri Kaydet
+                </button>
+            </div>
+            <div class="navbar-right">
+                <div class="nav-icon-btn"><i class="bi bi-question-circle"></i></div>
+                <div class="nav-icon-btn"><i class="bi bi-calendar3"></i></div>
+                <div class="nav-icon-btn"><i class="bi bi-globe"></i></div>
+                <div class="nav-icon-btn"><i class="bi bi-grid-3x3-gap"></i></div>
+                <div class="nav-icon-btn"><i class="bi bi-lock"></i></div>
+            </div>
+        </nav>
+
+        <!-- Sol Yan Menü (CV Kısımları) -->
+        <aside class="cv-sidebar">
+            <div class="cv-sidebar-item active"><i class="bi bi-person-fill"></i> Kişisel Bilgilerim</div>
+            <div class="cv-sidebar-item"><i class="bi bi-telephone-fill"></i> İletişim Bilgilerim</div>
+            <div class="cv-sidebar-item"><i class="bi bi-mortarboard-fill"></i> Eğitim Bilgilerim</div>
+            <div class="cv-sidebar-item"><i class="bi bi-briefcase-fill"></i> İş Deneyimlerim</div>
+            <div class="cv-sidebar-item"><i class="bi bi-translate"></i> Yabancı Dillerim</div>
+            <div class="cv-sidebar-item"><i class="bi bi-award-fill"></i> Etkinliklerim</div>
+            <div class="cv-sidebar-item"><i class="bi bi-folder-fill"></i> Projelerim</div>
+            <div class="cv-sidebar-item"><i class="bi bi-people-fill"></i> Referanslarım</div>
+            <div class="cv-sidebar-item"><i class="bi bi-lightning-fill"></i> Yetkinliklerim</div>
+            <div class="cv-sidebar-item"><i class="bi bi-heart-fill"></i> İlgi Alanlarım</div>
+        </aside>
+
+        <!-- CV Form İçeriği -->
+        <main class="cv-container">
+            <!-- Sarı Bilgi Bannerı -->
+            <div class="cv-yellow-banner">
+                <i class="bi bi-bell-fill fs-5"></i>
+                <span>Yaptığınız değişikliklerin kaybolmaması için sayfanın üst kısmındaki "Değişiklikleri Kaydet"
+                    butonuna tıklamayı unutmayınız.</span>
+            </div>
+
+            <div class="row g-4 mt-2">
+                <!-- Sol Taraf: Profil Fotoğrafı -->
+                <div class="col-md-3 text-center d-flex flex-column align-items-center">
+                    <div class="profile-img-container shadow-sm">
+                        <!-- Yüksek Kaliteli Profil Resmi -->
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=240&fit=crop&q=80"
+                            alt="Güneş Sözer">
+                    </div>
+                    <div class="profile-upload-btn" title="Fotoğraf Yükle">
+                        <i class="bi bi-upload"></i>
+                    </div>
+                </div>
+
+                <!-- Sağ Taraf: Kişisel Bilgiler Tablosu -->
+                <div class="col-md-9">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="cv-label">AD</div>
+                            <div class="cv-value cv-value-blue">Güneş</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="cv-label">SOYAD</div>
+                            <div class="cv-value cv-value-blue">Sözer</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="cv-label">TC</div>
+                            <div class="cv-value">26*******794</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="cv-label">DOĞUM TARİHİ</div>
+                            <div class="cv-value cv-value-blue">28.09.1990</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="cv-label">DOĞUM YERİ</div>
+                            <div class="cv-value cv-value-blue">Konak</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="cv-label">UYRUK</div>
+                            <div class="cv-value cv-value-blue">İRAN</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="cv-label mb-1" for="marital-status">MEDENİ DURUMU</label>
+                            <select class="form-select form-select-sm bg-light" id="marital-status"
+                                style="max-width: 250px;">
+                                <option value="evli" selected>Evli</option>
+                                <option value="bekar">Bekar</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="cv-label mb-1" for="driver-license">SÜRÜCÜ BELGELERİ</label>
+                            <select class="form-select form-select-sm bg-light" id="driver-license"
+                                style="max-width: 250px;">
+                                <option value="yok" selected>YOK</option>
+                                <option value="b">B Sınıfı</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Sorular / Radyo Butonları -->
+                    <div class="row mt-4 g-3">
+                        <div class="col-12 cv-checkbox-group">
+                            <div class="fw-semibold mb-1 small text-secondary">Aktif olarak araç kullanıyor musunuz?
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="carCheck" id="car1" value="evet">
+                                <label class="form-check-label" for="car1">Evet</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="carCheck" id="car2" value="hayir"
+                                    checked>
+                                <label class="form-check-label" for="car2">Hayır</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12 cv-checkbox-group">
+                            <div class="fw-semibold mb-1 small text-secondary">Sigara kullanıyor musunuz?</div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="smokeCheck" id="smoke1" value="evet">
+                                <label class="form-check-label" for="smoke1">Evet</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="smokeCheck" id="smoke2" value="hayir"
+                                    checked>
+                                <label class="form-check-label" for="smoke2">Hayır</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12 cv-checkbox-group">
+                            <div class="fw-semibold mb-1 small text-secondary">Öz geçmişim herkes tarafından
+                                görüntülenebilir olsun</div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="cvVisible" id="cvv1" value="evet"
+                                    checked>
+                                <label class="form-check-label" for="cvv1">Evet</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="cvVisible" id="cvv2" value="hayir">
+                                <label class="form-check-label" for="cvv2">Hayır</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12 cv-checkbox-group">
+                            <div class="fw-semibold mb-1 small text-secondary">Üniversitemize kayıtlı firmaların iş /
+                                staj ilanlarının varsayılan mail adresinize mail ile gönderilmesini istiyor musunuz?
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="mailCheck" id="mail1" value="evet"
+                                    checked>
+                                <label class="form-check-label" for="mail1">Evet</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="mailCheck" id="mail2" value="hayir">
+                                <label class="form-check-label" for="mail2">Hayır</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fake Önyazı Editörü -->
+                    <div class="col-12 mt-4">
+                        <div class="cv-label mb-1">Ön Yazı</div>
+                        <div class="fake-editor-toolbar">
+                            <button class="fake-editor-btn" title="Kalın (Bold)"><b>B</b></button>
+                            <button class="fake-editor-btn" title="İtalik (Italic)"><i>I</i></button>
+                            <button class="fake-editor-btn" title="Altı Çizili"><u>U</u></button>
+                            <span class="text-muted" style="font-size: 0.8rem;">|</span>
+                            <button class="fake-editor-btn" title="Sola Hizala"><i
+                                    class="bi bi-justify-left"></i></button>
+                            <button class="fake-editor-btn" title="Ortala"><i
+                                    class="bi bi-justify-content-center"></i></button>
+                            <button class="fake-editor-btn" title="Sağa Hizala"><i
+                                    class="bi bi-justify-right"></i></button>
+                        </div>
+                        <textarea class="fake-editor-textarea"
+                            placeholder="Buraya ön yazınızı yazabilirsiniz..."></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================================================================
+         DURUM 3: MEZUN KART BAŞVURU FORMU SAYFASI
+         ================================================================= -->
+    <div id="application-state" class="state-section">
+
+        <!-- Navbar -->
+        <nav class="navbar-main" style="padding-left: 10px;">
+            <div class="d-flex align-items-center gap-2">
+                <div
+                    style="background-color: #be185d; color: white; padding: 4px 10px; font-weight: bold; border-radius: 4px; font-size: 0.95rem; font-family: 'Outfit';">
+                    İKÇÜ</div>
+                <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1 bg-white text-dark ms-2"
+                    onclick="switchToDashboard()"
+                    style="font-size: 0.78rem; font-weight: 600; border: 1px solid #cbd5e1;">
+                    <i class="bi bi-house-door-fill text-muted"></i> ANA SAYFA
+                </button>
+            </div>
+        </nav>
+
+        <!-- Başvuru Formu Kartı -->
+        <main class="container">
+            <div class="app-form-card bg-white mt-5">
+                <h3 id="app-form-title" class="fw-bold fs-4 text-center mb-4 text-dark" style="font-family: 'Outfit';">
+                    Mezun Kart Başvuru Formu</h3>
+                <p id="app-form-subtitle" class="text-muted text-center mb-4 small">Lütfen kartınızın size
+                    ulaştırılabilmesi için aşağıdaki bilgileri eksiksiz doldurunuz.</p>
+
+                <form onsubmit="event.preventDefault(); submitGraduateCardApp();">
+                    <div class="mb-3">
+                        <label for="app-name-surname" class="form-label fw-semibold text-secondary small">Kart Üzerinde
+                            Yazacak Ad Soyad</label>
+                        <input type="text" class="form-control" id="app-name-surname" value="Güneş Sözer" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="app-program" class="form-label fw-semibold text-secondary small">Mezun Olduğu
+                            Program</label>
+                        <input type="text" class="form-control" id="app-program"
+                            value="Yazılım Mühendisliği Tezli Yüksek Lisans Programı" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="app-grad-year" class="form-label fw-semibold text-secondary small">Mezuniyet
+                            Yılı</label>
+                        <select class="form-select" id="app-grad-year" required>
+                            <option value="">Seçiniz...</option>
+                            <option value="2026">2026</option>
+                            <option value="2025" selected>2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold text-secondary small">Teslim Yöntemi</label>
+                        <input type="text" class="form-control bg-light"
+                            value="Elden Teslim (Bilgi İşlem Daire Başkanlığı-Akıllı Kart Birimi)" readonly>
+                    </div>
+
+                    <!-- Kayıp Kart Ödeme Uyarısı (Varsayılan gizli) -->
+                    <div id="lost-card-payment-warning"
+                        class="alert alert-warning align-items-start gap-2 mt-3 mb-3 py-2 px-3 d-none"
+                        style="font-size: 0.82rem; font-weight: 500;">
+                        <i class="bi bi-exclamation-triangle-fill fs-5 text-warning mt-1"></i>
+                        <span>Kartınızın yeniden basımı için <strong>IBAN000000000</strong> hesabına <strong>70
+                                TL</strong> ödeme yapılması gerekmektedir.</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 fw-bold py-2 mt-2"
+                        style="background-color: #be185d; border: none;">Başvuruyu Tamamla</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- =================================================================
+         DURUM 4: MEZUN KART DURUMU BİLGİ SAYFASI
+         ================================================================= -->
+    <div id="card-status-state" class="state-section">
+
+        <!-- Navbar -->
+        <nav class="navbar-main" style="padding-left: 10px;">
+            <div class="d-flex align-items-center gap-2">
+                <div
+                    style="background-color: #be185d; color: white; padding: 4px 10px; font-weight: bold; border-radius: 4px; font-size: 0.95rem; font-family: 'Outfit';">
+                    İKÇÜ</div>
+                <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1 bg-white text-dark ms-2"
+                    onclick="switchToDashboard()"
+                    style="font-size: 0.78rem; font-weight: 600; border: 1px solid #cbd5e1;">
+                    <i class="bi bi-house-door-fill text-muted"></i> ANA SAYFA
+                </button>
+            </div>
+        </nav>
+
+        <!-- İçerik Alanı -->
+        <main class="container my-5">
+            <div class="row g-4 justify-content-center">
+                <!-- Sol Kolon: Kart Görseli -->
+                <div class="col-md-4 d-flex flex-column align-items-center">
+                    <h5 class="fw-bold mb-3 text-secondary text-center"
+                        style="font-size: 0.85rem; font-family: 'Outfit'; text-transform: uppercase; letter-spacing: 1px;">
+                        Mezun Kart Ön İzleme</h5>
+                    <div class="mock-card-container">
+                        <div id="visual-mock-card" class="mock-card">
+                            <div class="mc-shape-secondary"></div>
+                            <div id="lost-card-overlay" class="mock-card-overlay-text" style="display: none;">
+                                <i class="bi bi-x-octagon-fill fs-3 mb-1"></i> İptal Edildi
+                            </div>
+
+                            <div class="mc-content-wrapper">
+                                <div class="mc-header">
+                                    <div class="mc-logo">
+                                        <div class="mc-logo-icon"></div>
+                                        <div class="mc-logo-text">İZMİR<br>KÂTİP ÇELEBİ<br>ÜNİVERSİTESİ</div>
+                                    </div>
+                                    <div class="mc-title-container">
+                                        <div class="mc-title-tr">Mezun Kartı</div>
+                                        <div class="mc-title-en">Alumni Card</div>
+                                    </div>
+                                </div>
+                                <div class="mc-body">
+                                    <div class="mc-info">
+                                        <div class="mc-field">
+                                            <div class="mc-label">Adı Soyadı <span>/ Name Surname</span></div>
+                                            <div class="mc-value" id="visual-card-holder">Güneş Sözer</div>
+                                        </div>
+                                        <div class="mc-field">
+                                            <div class="mc-label">Bölüm <span>/ Department</span></div>
+                                            <div class="mc-value">Yazılım Mühendisliği</div>
+                                        </div>
+                                        <div class="mc-field">
+                                            <div class="mc-label">Program</div>
+                                            <div class="mc-value">Tezli Yüksek Lisans</div>
+                                        </div>
+                                        <div class="mc-field">
+                                            <div class="mc-label">Mezuniyet Tarihi <span>/ Graduate Date</span></div>
+                                            <div class="mc-value">2025</div>
+                                        </div>
+                                    </div>
+                                    <div class="mc-photo">
+                                        <i class="bi bi-person-fill"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kayıp Kart Bildirimi Butonu -->
+                    <div class="mt-4 w-100 px-3">
+                        <button id="lost-card-btn"
+                            class="btn btn-outline-danger w-100 fw-bold py-2 d-flex align-items-center justify-content-center gap-2"
+                            onclick="triggerLostCardReport()">
+                            <i class="bi bi-exclamation-triangle"></i> Kayıp Kart Başvurusu
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sağ Kolon: Kart Durumu ve Bilgiler -->
+                <div class="col-md-8">
+                    <div class="card shadow-sm border-0 p-4"
+                        style="border: 1px solid #cbd5e1 !important; border-radius: 8px;">
+                        <h4 class="fw-bold text-dark mb-4" style="font-family: 'Outfit';">Başvuru ve Kart Durumu Bilgisi
+                        </h4>
+
+                        <!-- Dinamik Bilgilendirme Bannerı -->
+                        <div id="status-info-banner"
+                            class="alert alert-info d-flex align-items-center gap-2 mb-4 py-2 px-3"
+                            style="font-size: 0.82rem; font-weight: 500;">
+                            <i class="bi bi-info-circle-fill fs-5"></i>
+                            <span id="status-banner-text">Mezun Kartınız basım sırasındadır. Basım tamamlandığında
+                                tarafınıza SMS ile bildirim gönderilecektir.</span>
+                        </div>
+
+                        <!-- Step Tracker (Adım Takipçi) -->
+                        <div class="status-steps-container">
+                            <div class="status-steps">
+                                <div class="status-step-line-progress" id="step-progress-line" style="width: 50%;">
+                                </div>
+
+                                <div class="status-step completed" id="step-1">
+                                    <div class="status-step-icon"><i class="bi bi-check-lg"></i></div>
+                                    <div class="status-step-label">Başvuru Alındı</div>
+                                </div>
+                                <div class="status-step active" id="step-2">
+                                    <div class="status-step-icon" id="step-2-icon">2</div>
+                                    <div class="status-step-label" id="step-2-label">Kart Basılıyor</div>
+                                </div>
+                                <div class="status-step" id="step-3">
+                                    <div class="status-step-icon" id="step-3-icon">3</div>
+                                    <div class="status-step-label" id="step-3-label">Teslim Edilmeyi Bekliyor</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Detay Tablosu -->
+                        <div class="table-responsive mt-3">
+                            <table class="table table-borderless align-middle" style="font-size: 0.85rem;">
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid #f1f5f9;">
+                                        <td class="fw-bold text-secondary py-2" style="width: 30%;">AD SOYAD</td>
+                                        <td class="fw-semibold text-dark py-2">Güneş Sözer</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #f1f5f9;">
+                                        <td class="fw-bold text-secondary py-2">MEZUN OLUNAN PROGRAM</td>
+                                        <td class="fw-semibold text-dark py-2">Yazılım Mühendisliği Tezli Yüksek Lisans
+                                            Programı</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #f1f5f9;">
+                                        <td class="fw-bold text-secondary py-2">TESLİM YÖNTEMİ</td>
+                                        <td class="fw-semibold text-dark py-2">Elden Teslim (Rektörlük Mezun Ofisi)</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #f1f5f9;">
+                                        <td class="fw-bold text-secondary py-2">BAŞVURU TARİHİ</td>
+                                        <td class="fw-semibold text-dark py-2" id="info-app-date">28.06.2026</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-secondary py-2">KART DURUMU</td>
+                                        <td class="py-2">
+                                            <span class="badge bg-warning text-dark px-3 py-2 fw-bold"
+                                                id="info-card-status-badge">KART BASILIYOR</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- =================================================================
+         MODALLER VE BİLGİ PENCERELERİ (POP-UP)
+         ================================================================= -->
+    <!-- CV Güncelleme Bilgi Uyarısı Modalı -->
+    <div class="modal fade" id="cvWarningModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-dark" style="border-radius: 8px;">
+                <div class="modal-header border-0 bg-light">
+                    <h5 class="modal-title fw-bold text-danger d-flex align-items-center gap-2"
+                        style="font-size: 1.1rem;">
+                        <i class="bi bi-exclamation-triangle-fill"></i> Bilgi Güncelleme Uyarısı
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4 px-3 fs-6">
+                    Lütfen CV'nizde bulunan bilgilerinizin güncel olduğundan emin olun. Başvuru işlemlerine devam
+                    edebilmek için önce bilgilerinizi kontrol etmelisiniz.
+                </div>
+                <div class="modal-footer border-0 bg-light">
+                    <button type="button" class="btn btn-secondary btn-sm px-3" data-bs-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-primary btn-sm px-4" onclick="proceedToCVEdit()"
+                        style="background-color: #be185d; border: none;">Özgeçmişi Düzenle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Başvuru Başarılı Modalı -->
+    <div class="modal fade" id="appSuccessModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-dark" style="border-radius: 8px;">
+                <div class="modal-header border-0 bg-light">
+                    <h5 class="modal-title fw-bold text-success d-flex align-items-center gap-2"
+                        style="font-size: 1.1rem;">
+                        <i class="bi bi-check-circle-fill"></i> Başvuru Başarılı
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4 px-3 fs-6 text-center">
+                    <div class="text-success mb-3" style="font-size: 2.5rem;"><i class="bi bi-patch-check"></i></div>
+                    Mezun kart başvurunuz alınmıştır. Kart basımı tamamlandığında tarafınıza sms ile bilgilendirme
+                    yapılacaktır.
+                </div>
+                <div class="modal-footer border-0 bg-light">
+                    <button type="button" class="btn btn-primary btn-sm px-4" data-bs-dismiss="modal"
+                        style="background-color: #be185d; border: none;">Tamam</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kayıp Kart Bildirim Modalı -->
+    <div class="modal fade" id="lostCardModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-dark" style="border-radius: 8px;">
+                <div class="modal-header border-0 bg-light">
+                    <h5 class="modal-title fw-bold text-danger d-flex align-items-center gap-2"
+                        style="font-size: 1.1rem;">
+                        <i class="bi bi-exclamation-diamond-fill"></i> Kayıp Kart Bildirimi
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4 px-3 fs-6">
+                    Mevcut Mezun Kartınız kayıp olarak işaretlenerek kalıcı olarak <strong>iptal edilecek</strong> ve
+                    yeni kart basım talebi oluşturulacaktır. Bu işlemi onaylıyor musunuz?
+                </div>
+                <div class="modal-footer border-0 bg-light">
+                    <button type="button" class="btn btn-secondary btn-sm px-3" data-bs-dismiss="modal">İptal</button>
+                    <button type="button" class="btn btn-danger btn-sm px-4" onclick="confirmLostCard()"
+                        style="background-color: #dc3545; border: none;">Evet, Onaylıyorum</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SOL DİKEY ETİKET -->
+    <div id="vertical-left-text" class="left-vertical-label">ÖĞRENCİ BİLGİ EKRANI</div>
+
+    <!-- SAĞ ALT ETİKET -->
+    <div id="badge-right-text" class="bottom-right-label">ÖĞRENCİ BİLGİ EKRANI</div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- UYGULAMA MANTIK KODLARI -->
+    <script>
+        const cvWarningModal = new bootstrap.Modal(document.getElementById('cvWarningModal'));
+        const appSuccessModal = new bootstrap.Modal(document.getElementById('appSuccessModal'));
+        const lostCardModal = new bootstrap.Modal(document.getElementById('lostCardModal'));
+
+        let hasAppliedForCard = false;
+        let isLostCardApplication = false;
+
+        // 1. Kart Uyarısı Tetikleme (Mezun Kartı Kartına Tıklayınca)
+        function triggerCardWarning() {
+            if (hasAppliedForCard) {
+                switchToCardStatus();
+            } else {
+                cvWarningModal.show();
+            }
+        }
+
+        // 2. Pop-up'tan Özgeçmiş Düzenleme Sayfasına Geçme
+        function proceedToCVEdit() {
+            cvWarningModal.hide();
+
+            // Arayüz Bölümlerini Değiştir
+            document.getElementById('dashboard-state').classList.remove('active');
+            document.getElementById('application-state').classList.remove('active');
+            document.getElementById('card-status-state').classList.remove('active');
+            document.getElementById('cv-state').classList.add('active');
+
+            // Sol ve Sağ Alt Kenar Etiketlerini Güncelle (Fotoğraftaki gibi)
+            document.getElementById('vertical-left-text').textContent = 'Özgeçmiş Oluşturma ve Düzenleme Sayfası';
+            document.getElementById('badge-right-text').textContent = 'Özgeçmiş Oluşturma ve Düzenleme Sayfası';
+        }
+
+        // 3. Değişiklikleri Kaydedip Kart Başvuru Formuna Gitme
+        function saveCVChanges() {
+            alert('Özgeçmiş değişiklikleriniz başarıyla kaydedildi! Mezun Kart başvuru sayfasına yönlendiriliyorsunuz.');
+
+            isLostCardApplication = false;
+            openApplicationForm();
+        }
+
+        // 4. Kart Başvurusunu Gönderme
+        function submitGraduateCardApp() {
+            const nameSurname = document.getElementById('app-name-surname').value;
+            const programName = document.getElementById('app-program').value;
+
+            // Ön izleme kartındaki adı güncelle
+            document.getElementById('visual-card-holder').textContent = nameSurname;
+
+            // Durum tablosundaki bilgileri güncelle
+            const tableRows = document.querySelectorAll('#card-status-state table tbody tr');
+            tableRows[0].querySelector('td:nth-child(2)').textContent = nameSurname;
+            tableRows[1].querySelector('td:nth-child(2)').textContent = programName;
+
+            // Dinamik Başvuru Tarihi
+            const today = new Date();
+            const formattedDate = String(today.getDate()).padStart(2, '0') + '.' +
+                String(today.getMonth() + 1).padStart(2, '0') + '.' +
+                today.getFullYear();
+            document.getElementById('info-app-date').textContent = formattedDate;
+
+            // Kart durumunu normale döndür (önceden kayıp verildiyse)
+            resetCardStatusToNormal();
+
+            // Durumu başvuru yapıldı olarak işaretle
+            hasAppliedForCard = true;
+
+            // Pop-up'ı (modal) göster
+            appSuccessModal.show();
+        }
+
+        // Pop-up kapandıktan sonra kart durumu bilgi sayfasına yönlendir
+        document.getElementById('appSuccessModal').addEventListener('hidden.bs.modal', function () {
+            switchToCardStatus();
+        });
+
+        // 5. Kart Durum Sayfasına Geçiş
+        function switchToCardStatus() {
+            document.getElementById('dashboard-state').classList.remove('active');
+            document.getElementById('cv-state').classList.remove('active');
+            document.getElementById('application-state').classList.remove('active');
+            document.getElementById('card-status-state').classList.add('active');
+
+            // Kenar Etiketlerini Mezun Kart Durumu olarak güncelle
+            document.getElementById('vertical-left-text').textContent = 'Mezun Kart Durum Bilgisi';
+            document.getElementById('badge-right-text').textContent = 'Mezun Kart Durum Bilgisi';
+        }
+
+        // 6. Kayıp Kart Bildirimi Başlat
+        function triggerLostCardReport() {
+            lostCardModal.show();
+        }
+
+        // 7. Kayıp Kart Bildirimini Onayla
+        function confirmLostCard() {
+            lostCardModal.hide();
+            isLostCardApplication = true;
+            openApplicationForm();
+        }
+
+        // 8. Kart Durumunu Normale (Basım Aşamasına) Döndür
+        function resetCardStatusToNormal() {
+            const mockCard = document.getElementById('visual-mock-card');
+            mockCard.classList.remove('lost');
+            document.getElementById('lost-card-overlay').style.display = 'none';
+
+            // Bannerı mavi yap
+            document.getElementById('status-info-banner').className = "alert alert-info d-flex align-items-center gap-2 mb-4 py-2 px-3";
+            document.getElementById('status-banner-text').textContent = "Mezun Kartınız basım sırasındadır. Basım tamamlandığında tarafınıza SMS ile bildirim gönderilecektir.";
+
+            // Adımları normale döndür
+            document.getElementById('step-progress-line').style.width = '50%';
+
+            document.getElementById('step-1').className = "status-step completed";
+            document.getElementById('step-1').innerHTML = '<div class="status-step-icon"><i class="bi bi-check-lg"></i></div><div class="status-step-label">Başvuru Alındı</div>';
+
+            document.getElementById('step-2').className = "status-step active";
+            document.getElementById('step-2').innerHTML = '<div class="status-step-icon" id="step-2-icon">2</div><div class="status-step-label" id="step-2-label">Kart Basılıyor</div>';
+
+            document.getElementById('step-3').className = "status-step";
+            document.getElementById('step-3').innerHTML = '<div class="status-step-icon" id="step-3-icon">3</div><div class="status-step-label" id="step-3-label">Teslim Edilmeyi Bekliyor</div>';
+
+            // Tablo badge'i
+            const badge = document.getElementById('info-card-status-badge');
+            badge.className = "badge bg-warning text-dark px-3 py-2 fw-bold";
+            badge.textContent = "KART BASILIYOR";
+
+            // Butonu eski haline döndür
+            const lostBtn = document.getElementById('lost-card-btn');
+            lostBtn.className = "btn btn-outline-danger w-100 fw-bold py-2 d-flex align-items-center justify-content-center gap-2";
+            lostBtn.innerHTML = '<i class="bi bi-exclamation-triangle"></i> Kayıp Kart Başvurusu';
+            lostBtn.setAttribute('onclick', 'triggerLostCardReport()');
+        }
+
+        // 9. Başvuru formunu aç (normal veya kayıp kart modunda)
+        function openApplicationForm() {
+            // Başlık ve alt metni güncelle
+            const title = document.getElementById('app-form-title');
+            const subtitle = document.getElementById('app-form-subtitle');
+            const paymentWarning = document.getElementById('lost-card-payment-warning');
+
+            if (isLostCardApplication) {
+                title.textContent = 'Kayıp Kart Başvuru Formu';
+                subtitle.textContent = 'Kayıp kartınızın yeniden basımı için aşağıdaki bilgileri eksiksiz doldurunuz.';
+                paymentWarning.classList.remove('d-none');
+                paymentWarning.classList.add('d-flex');
+            } else {
+                title.textContent = 'Mezun Kart Başvuru Formu';
+                subtitle.textContent = 'Lütfen kartınızın size ulaştırılabilmesi için aşağıdaki bilgileri eksiksiz doldurunuz.';
+                paymentWarning.classList.remove('d-flex');
+                paymentWarning.classList.add('d-none');
+            }
+
+            // Sayfayı değiştir
+            document.getElementById('dashboard-state').classList.remove('active');
+            document.getElementById('cv-state').classList.remove('active');
+            document.getElementById('card-status-state').classList.remove('active');
+            document.getElementById('application-state').classList.add('active');
+
+            // Kenar etiketlerini güncelle
+            const labelText = isLostCardApplication ? 'Kayıp Kart Başvuru İşlemleri' : 'Mezun Kart Başvuru İşlemleri';
+            document.getElementById('vertical-left-text').textContent = labelText;
+            document.getElementById('badge-right-text').textContent = labelText;
+        }
+
+        // 10. Ana Sayfaya Geri Dönüş
+        function switchToDashboard() {
+            document.getElementById('cv-state').classList.remove('active');
+            document.getElementById('application-state').classList.remove('active');
+            document.getElementById('card-status-state').classList.remove('active');
+            document.getElementById('dashboard-state').classList.add('active');
+
+            // Etiketleri sıfırla
+            document.getElementById('vertical-left-text').textContent = 'ÖĞRENCİ BİLGİ EKRANI';
+            document.getElementById('badge-right-text').textContent = 'ÖĞRENCİ BİLGİ EKRANI';
+        }
+
+    </script>
+</body>
+
+</html>

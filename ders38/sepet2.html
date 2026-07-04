@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <input type="text" id="inp">
+        <button id="btnEkle">Ekle</button>
+        <button id="btnGoster">Göster</button>
+        <button id="btnSil">Sil</button>
+    </div>
+    <ul id="liste">
+
+    </ul>
+
+    <script>
+
+        let inp = document.querySelector("#inp")
+        let ekle = document.querySelector("#btnEkle")
+        let goster = document.querySelector("#btnGoster")
+        let sil = document.querySelector("#btnSil")
+        let liste = document.querySelector("#liste")
+
+        ekle.addEventListener("click", () => {
+            let sepet = JSON.parse(localStorage.getItem("sepetim")) || []
+            sepet.push(inp.value)
+            localStorage.setItem("sepetim", JSON.stringify(sepet))
+            inp.value = ""
+        })
+
+        goster.addEventListener("click", () => {
+            let sepet = JSON.parse(localStorage.getItem("sepetim")) || []
+            sepet.forEach(element => {
+                let yeni = document.createElement("p")
+                yeni.innerHTML = element
+                liste.appendChild(yeni)
+
+            });
+        })
+
+        liste.addEventListener("click", (e) => {
+            console.log(e.target);
+        });
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMAY</title>
+
+    <style>
+        * {
+            margin: 0;
+            bottom: 0;
+            box-sizing: border-box;
+        }
+        nav{
+            display: flex;
+            height: 75px;
+            justify-content: space-around;
+            align-items: center;
+            background: linear-gradient(60deg, rgb(209, 114, 36), rgb(238, 164, 28));
+
+        }
+        nav img{
+            width: 100%;
+            border-radius: 50px;
+        }
+        .logoo{
+            width: 55px;
+        }
+        ul{
+            display: flex;
+        }
+         li{
+            list-style: none;
+            padding: 5px;
+            margin: 35px;
+            border-radius: 5px;
+            font-size: 1.5em;
+            background-color: rgb(138, 71, 26);  
+            
+        }
+        a {
+            color: rgb(243, 222, 196);
+            text-decoration: none;
+        }
+
+        /* li:hover{
+            border: 1px dotted white;
+            border-radius: 5px;
+            background-color: red;
+        } */
+        /* main {
+            display: flex;
+
+        } */
+
+        /* div {
+            border: 2px solid rgb(145, 62, 7);
+        } */
+
+        .div1 {
+            width: 50%;
+            height: 400px;
+
+        }
+
+        .div2 {
+            width: 50%;
+            height: 400px;
+        }
+
+        .div3 {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            left: 200px;
+            top: 73px;
+
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            /* position: absolute;
+            left: 50%;
+            top: 50%;
+             */
+        }
+
+
+/* 
+        h1 {
+            color: rgba(77, 3, 3, 0.904);
+            background-color: burlywood;
+            border: 2px solid rgb(46, 28, 28);
+
+        }
+
+        ul {
+            color: rgb(112, 44, 20);
+            font-size: 25px;
+            font-style: italic;
+        }
+
+        h2 {
+            color: rgb(117, 62, 22);
+            background-color: burlywood;
+            border: 1px solid rgb(46, 28, 28);
+        }
+
+        h3 {
+            color: rgb(88, 59, 3);
+            background-color: rgb(235, 171, 88);
+        }
+
+        .deneme {
+            color: rgb(88, 48, 10);
+            font-size: 20px;
+            background-color: bisque;
+
+        }
+
+        .deneme2 {
+            color: rgb(145, 62, 7);
+            background-color: bisque;
+            font-size: 20px;
+        } */
+    </style>
+
+</head>
+
+<body>
+    <!-- <img src="./resim/arka1.jpg" alt="Bu bir arka plan resmidir." width="200px"> -->
+
+    <nav>
+        <div class="logoo">
+            <a href="logo"><img src="./resim/res1.jpg" alt="resim"></a>
+        </div>
+        <div>
+        <ul>
+            <li><a href=""><b>UMAY</b></a></li>
+            <li><a href=""><b>DOĞUM GÜNÜ</b></a></li>
+            <li><a href=""><b>TATİL</b></a></li>
+            <li><a href=""><b>EV</b></a></li>
+        </ul>
+        </div>
+        <div>
+            <i class="fa-solid fa-heart"></i>
+           <i class="fa-solid fa-hands-holding-child"></i> 
+           <i class="fa-solid fa-heart"></i>
+        </div>
+    </nav>
+    <main>
+        <!-- <img src="./resim/res1.jpg" alt="Bu bir profil resmidir." width="350px"> -->
+        <div class="div1">
+            <div class="div3">
+                <img src="./resim/res2.jpg" alt="Bu bir profil resmidir." width="350px">
+            </div>
+
+        </div>
+        <div class="div2">
+            <h1>UMAY</h1>
+            <p class="kisisel" style="font-style: oblique;  color: chocolate; font-size: 20px;"><b>Doğum
+                    Tarihi: 18.09.2024 <br> Burç: Başak</b></p>
+
+            <ul>
+                <li>Teyze: Hanife</li>
+                <li>Enişte: Haşim</li>
+                <li>Anne: Sümeyye</li>
+                <li>Baba: İsmail</li>
+            </ul>
+        </div>
+        </p>
+    </main>
+    <div>
+        <h3>Öğrendiği ilk kelime "TEYZE"</h3>
+        <audio src="./resim/ses1.mp3" controls></audio>
+    </div>
+    <hr>
+    <div>
+        <h3>En sevdiği yiyecek? --</h3>
+        <label for="" class="deneme">Peynir</label> <input type="radio" name="Zeytin" id="">
+        <label for="" class="deneme">Yumurta</label> <input type="radio" name="Zeytin" id="">
+        <label for="" class="deneme"> Zeytin</label> <input type="radio" name="Zeytin" id="">
+    </div>
+    <hr>
+    <div>
+        <h3>En sevdiği tatlı? --</h3>
+        <hr>
+        <label for="" class="deneme2">Gofret</label> <input type="radio" name="Zeytin" id="">
+        <label for="" class="deneme2">Sütlaç</label> <input type="radio" name="Zeytin" id="">
+        <label for="" class="deneme2">Puding</label> <input type="radio" name="Zeytin" id="">
+    </div>
+    <hr>
+    <div>
+        <label for=""></label>
+        <h2>TATİL VİDEOMUZ</h2>
+        <video src="./resim/videoumay.mp4" width="300px" controls></video>
+    </div>
+    <hr>
+    <div>
+        <h2>En Sevdiği Youtube Video "Aliş ile Zeliş"</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ZHTY6QfYTIc?si=4701-1R17M70_LVH"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div>
+        <h2>Evimiz</h2>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3121.962016362129!2d27.035320396789558!3d38.51158689999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bbd1ec9e51c187%3A0x1d97e87d240ce15b!2sse%C3%A7kar%20suites!5e0!3m2!1str!2str!4v1769240202028!5m2!1str!2str"
+            width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <!-- <form action="https://www.helloworldyazilim.com/" method="get">
+    <input type="button" value="Kaydet">
+    </form> -->
+    <script src="https://kit.fontawesome.com/98b6ab15d0.js" crossorigin="anonymous"></script
+</body>
+
+
+</html>

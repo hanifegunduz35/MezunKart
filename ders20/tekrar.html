@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 500px;
+            /* height: 100px; */
+            background-color: blue;
+            display: grid;
+            /* grid-template-columns: repeat(3,1fr); */
+            /* gap: 5px; */
+            grid-template-areas:
+                "header header"
+                "icerik resim"
+                "yazi yazi"
+                "footer footer";
+            gap: 10px;
+
+        }
+
+        .container div {
+            border: 1px solid black;
+            height: 200px;
+        }
+
+        .header {
+            grid-area: header;
+        }
+
+        .icerik {
+            grid-area: icerik;
+        }
+
+        .yazi {
+            grid-area: yazi;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* grid-template-rows: 50px 50px; */
+        }
+
+        .yazi div {
+            height: 100px;
+        }
+
+        .resim {
+            grid-area: resim;
+        }
+
+        .footer {
+            grid-area: footer;
+        }
+
+        /* @media screen and (max-width:600px){
+            .container{
+                background-color: red;
+                width: 300px;
+            }
+        } */
+    </style>
+</head>
+
+<body>
+    <!-- media screen projeyi ekran boyutlarına göre uyarlamayı sağlar - responsive tasarım -->
+    <!-- grid -->
+
+    <div class="container">
+        <div class="header"></div>
+        <div class="icerik"></div>
+        <div class="resim"></div>
+        <div class="yazi">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="footer"></div>
+    </div>
+</body>
+
+</html>
