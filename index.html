@@ -462,11 +462,10 @@
         .mock-card {
             width: 360px;
             height: 230px;
-            background-color: #e5e7eb;
-            background-image:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.1) 100%);
+            background-color: #a3a3a3;
             border-radius: 8px;
-            padding: 15px;
+            padding: 0;
+            /* Padding removed for absolute shapes */
             color: #111827;
             position: relative;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
@@ -483,167 +482,9 @@
         }
 
         .mock-card.lost {
-            background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
+            background: #475569;
             box-shadow: 0 10px 25px rgba(71, 85, 105, 0.3);
             opacity: 0.85;
-        }
-
-        /* Abstract Red Shapes Background */
-        .mock-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -20px;
-            width: 120px;
-            height: 100%;
-            background: #be185d;
-            z-index: 0;
-            opacity: 0.9;
-            clip-path: polygon(0 0, 40% 0, 100% 50%, 40% 100%, 0 100%);
-        }
-
-        .mock-card::after {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            right: -20px;
-            width: 250px;
-            height: 200px;
-            background: #be185d;
-            z-index: 0;
-            opacity: 0.95;
-            clip-path: polygon(100% 0, 100% 100%, 0 100%, 40% 60%, 70% 30%);
-        }
-
-        .mc-shape-secondary {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 150px;
-            height: 150px;
-            background: #be185d;
-            z-index: 0;
-            clip-path: polygon(100% 50%, 100% 100%, 50% 100%);
-        }
-
-        /* Foreground Wrapper */
-        .mc-content-wrapper {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        /* Header Area */
-        .mc-header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .mc-logo {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .mc-logo-icon {
-            width: 20px;
-            height: 24px;
-            background: #fff;
-            border-left: 3px solid #be185d;
-            border-bottom: 3px solid #be185d;
-            border-radius: 0 8px 8px 8px;
-        }
-
-        .mc-logo-text {
-            font-size: 0.5rem;
-            font-weight: 900;
-            color: #be185d;
-            line-height: 1.1;
-            letter-spacing: 0.2px;
-            text-align: left;
-        }
-
-        .mc-title-container {
-            text-align: right;
-        }
-
-        .mc-title-tr {
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: #be185d;
-            margin-bottom: -2px;
-        }
-
-        .mc-title-en {
-            font-size: 0.55rem;
-            font-style: italic;
-            color: #4b5563;
-        }
-
-        /* Body Area */
-        .mc-body {
-            display: flex;
-            justify-content: space-between;
-            flex: 1;
-        }
-
-        .mc-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            flex: 1;
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-
-        .mc-field {
-            line-height: 1.1;
-            text-align: left;
-            margin-bottom: 5px;
-        }
-
-        .mc-label {
-            font-size: 0.55rem;
-            font-weight: 800;
-            color: #111827;
-        }
-
-        .mc-label span {
-            font-weight: 400;
-            font-style: italic;
-            color: #4b5563;
-        }
-
-        .mc-value {
-            font-size: 0.65rem;
-            font-weight: 600;
-            color: #374151;
-            margin-top: 2px;
-            min-height: 12px;
-        }
-
-        .mc-photo {
-            width: 85px;
-            height: 110px;
-            border: 2px solid #be185d;
-            background-color: #e5e7eb;
-            padding: 2px;
-            margin-top: 5px;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            align-self: flex-end;
-            position: relative;
-        }
-
-        .mc-photo i {
-            font-size: 4rem;
-            color: #6b7280;
         }
 
         /* Lost Overlay */
@@ -767,28 +608,35 @@
                 padding: 10px 10px 10px 35px;
                 gap: 10px;
             }
-            .navbar-left, .navbar-right {
+
+            .navbar-left,
+            .navbar-right {
                 width: 100%;
                 justify-content: center;
                 flex-wrap: wrap;
             }
+
             .sub-header {
                 padding-left: 35px;
             }
+
             .main-content {
                 margin-top: 20px;
                 flex-direction: column;
                 align-items: center;
             }
+
             .action-card {
                 width: 100%;
                 max-width: 300px;
             }
+
             .cv-container {
                 margin-left: 0;
                 padding: 10px;
                 flex-direction: column;
             }
+
             .cv-sidebar {
                 width: 100%;
                 height: auto;
@@ -799,40 +647,51 @@
                 border-bottom: 1px solid #cbd5e1;
                 padding-bottom: 5px;
             }
+
             .cv-sidebar-item {
                 white-space: nowrap;
                 padding: 10px 15px;
             }
+
             .cv-content-area {
                 padding: 10px;
             }
+
             .warning-banner {
                 font-size: 0.75rem;
                 padding: 10px;
             }
+
             .mock-card {
                 width: 100%;
                 max-width: 360px;
             }
+
             .left-vertical-label {
                 display: none;
             }
+
             .status-steps {
                 flex-direction: column;
                 gap: 20px;
                 align-items: flex-start;
             }
+
             .status-step {
                 flex-direction: row;
                 gap: 10px;
                 width: 100%;
             }
-            .status-steps::before, .status-step-line-progress {
+
+            .status-steps::before,
+            .status-step-line-progress {
                 display: none;
             }
+
             .status-step-label {
                 margin-top: 0;
             }
+
             .cv-yellow-banner {
                 flex-direction: column;
                 align-items: flex-start;
@@ -968,6 +827,7 @@
                     style="font-size: 0.78rem; font-weight: 600; border: 1px solid #cbd5e1;">
                     <i class="bi bi-house-door-fill text-muted"></i> ANA SAYFA
                 </button>
+
                 <!-- Kaydet Butonu -->
                 <button class="btn btn-success btn-sm d-flex align-items-center gap-1 ms-2 px-3"
                     onclick="saveCVChanges()" style="font-size: 0.78rem; font-weight: 600; background-color: #198754;">
@@ -1163,6 +1023,12 @@
                     style="font-size: 0.78rem; font-weight: 600; border: 1px solid #cbd5e1;">
                     <i class="bi bi-house-door-fill text-muted"></i> ANA SAYFA
                 </button>
+                <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1 bg-white text-dark ms-2"
+                    onclick="triggerCardWarning()"
+                    style="font-size: 0.78rem; font-weight: 600; border: 1px solid #cbd5e1;">
+                    <i class="bi bi-card-text text-muted"></i> Mezun Kart Başvuru
+                </button>
+
             </div>
         </nav>
 
@@ -1178,37 +1044,48 @@
                     <div class="mb-3">
                         <label for="app-name-surname" class="form-label fw-semibold text-secondary small">Kart Üzerinde
                             Yazacak Ad Soyad</label>
-                        <input type="text" class="form-control" id="app-name-surname" value="Güneş Sözer" required>
+                        <input type="text" class="form-control bg-light" id="app-name-surname" value="Güneş Sözer"
+                            readonly required>
                     </div>
 
                     <div class="mb-3">
                         <label for="app-program" class="form-label fw-semibold text-secondary small">Mezun Olduğu
                             Program</label>
-                        <input type="text" class="form-control" id="app-program"
-                            value="Yazılım Mühendisliği Tezli Yüksek Lisans Programı" required>
+                        <input type="text" class="form-control bg-light" id="app-program"
+                            value="Yazılım Mühendisliği Tezli Yüksek Lisans Programı" readonly required>
                     </div>
 
                     <div class="mb-3">
                         <label for="app-grad-year" class="form-label fw-semibold text-secondary small">Mezuniyet
                             Yılı</label>
-                        <select class="form-select" id="app-grad-year" required>
-                            <option value="">Seçiniz...</option>
-                            <option value="2026">2026</option>
-                            <option value="2025" selected>2025</option>
-                            <option value="2024">2024</option>
-                            <option value="2023">2023</option>
-                            <option value="2022">2022</option>
-                            <option value="2021">2021</option>
-                            <option value="2020">2020</option>
-                            <option value="2019">2019</option>
-                            <option value="2018">2018</option>
+                        <select class="form-select bg-light" id="app-grad-year" disabled required>
+                            <option value="2025">2025</option>
+
                         </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="app-email" class="form-label fw-semibold text-secondary small">E-posta</label>
+                        <input type="email" class="form-control bg-light" id="app-email" value="test@gmail.com" readonly
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="app-phone" class="form-label fw-semibold text-secondary small">Cep Telefonu</label>
+                        <input type="text" class="form-control bg-light" id="app-phone" value="05555555555" readonly
+                            required>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label fw-semibold text-secondary small">Teslim Yöntemi</label>
                         <input type="text" class="form-control bg-light"
                             value="Elden Teslim (Bilgi İşlem Daire Başkanlığı-Akıllı Kart Birimi)" readonly>
+                    </div>
+
+                    <div class="alert alert-warning d-flex align-items-center gap-2 mt-3 mb-3 py-2 px-3"
+                        style="font-size: 0.82rem; font-weight: 500;">
+                        <i class="bi bi-exclamation-triangle-fill fs-5 text-warning"></i>
+                        <span>Bilgilerinizin doğruluğundan emin olunuz.</span>
                     </div>
 
                     <!-- Kayıp Kart Ödeme Uyarısı (Varsayılan gizli) -->
@@ -1243,6 +1120,12 @@
                     style="font-size: 0.78rem; font-weight: 600; border: 1px solid #cbd5e1;">
                     <i class="bi bi-house-door-fill text-muted"></i> ANA SAYFA
                 </button>
+                <button class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1 bg-white text-dark ms-2"
+                    onclick="triggerCardWarning()"
+                    style="font-size: 0.78rem; font-weight: 600; border: 1px solid #cbd5e1;">
+                    <i class="bi bi-card-text text-muted"></i> Mezun Kart Başvuru
+                </button>
+
             </div>
         </nav>
 
@@ -1261,38 +1144,95 @@
                                 <i class="bi bi-x-octagon-fill fs-3 mb-1"></i> İptal Edildi
                             </div>
 
-                            <div class="mc-content-wrapper">
-                                <div class="mc-header">
-                                    <div class="mc-logo">
-                                        <div class="mc-logo-icon"></div>
-                                        <div class="mc-logo-text">İZMİR<br>KÂTİP ÇELEBİ<br>ÜNİVERSİTESİ</div>
-                                    </div>
-                                    <div class="mc-title-container">
-                                        <div class="mc-title-tr">Mezun Kartı</div>
-                                        <div class="mc-title-en">Alumni Card</div>
-                                    </div>
+                            <div
+                                style="position: relative; z-index: 2; width: 100%; height: 100%; display: flex; flex-direction: column;">
+
+                                <!-- Background Shapes -->
+                                <div
+                                    style="position: absolute; top: 0; right: 0; width: 230px; height: 140px; background-color: #7a121a; clip-path: polygon(35% 0, 100% 0, 100% 100%); z-index: 0; border-bottom-left-radius: 8px;">
                                 </div>
-                                <div class="mc-body">
-                                    <div class="mc-info">
-                                        <div class="mc-field">
-                                            <div class="mc-label">Adı Soyadı <span>/ Name Surname</span></div>
-                                            <div class="mc-value" id="visual-card-holder">Güneş Sözer</div>
+                                <div
+                                    style="position: absolute; bottom: 0; right: 0; width: 140px; height: 140px; background-color: #7a121a; clip-path: polygon(100% 25%, 100% 100%, 25% 100%); z-index: 0;">
+                                </div>
+                                <div
+                                    style="position: absolute; top: -10px; right: 25px; width: 240px; height: 260px; background-color: #9f1523; clip-path: polygon(65% 0, 80% 0, 30% 100%, 15% 100%); z-index: 0;">
+                                </div>
+
+                                <!-- Content Wrapper with Padding -->
+                                <div
+                                    style="position: relative; z-index: 2; display: flex; flex-direction: column; width: 100%; height: 100%; padding: 15px;">
+
+                                    <!-- Logo & Title -->
+                                    <div
+                                        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                                        <div style="display: flex; align-items: center; gap: 6px;">
+                                            <div
+                                                style="width: 25px; height: 25px; background: #a41924; clip-path: polygon(0 20%, 100% 0, 80% 100%, 10% 90%);">
+                                            </div>
+                                            <div
+                                                style="font-size: 0.55rem; font-weight: 900; color: #111; line-height: 1.1; font-family: 'Times New Roman', serif;">
+                                                İZMİR<br>KÂTİPÇELEBİ<br>ÜNİVERSİTESİ</div>
                                         </div>
-                                        <div class="mc-field">
-                                            <div class="mc-label">Bölüm <span>/ Department</span></div>
-                                            <div class="mc-value">Yazılım Mühendisliği</div>
-                                        </div>
-                                        <div class="mc-field">
-                                            <div class="mc-label">Program</div>
-                                            <div class="mc-value">Tezli Yüksek Lisans</div>
-                                        </div>
-                                        <div class="mc-field">
-                                            <div class="mc-label">Mezuniyet Tarihi <span>/ Graduate Date</span></div>
-                                            <div class="mc-value">2025</div>
+                                        <div style="text-align: right; margin-right: 5px; margin-top: 5px;">
+                                            <div
+                                                style="font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: -4px; font-family: 'Times New Roman', serif;">
+                                                Mezun Kartı</div>
+                                            <div
+                                                style="font-size: 0.65rem; font-style: italic; color: #d1d5db; font-family: 'Times New Roman', serif;">
+                                                Alumni Card</div>
                                         </div>
                                     </div>
-                                    <div class="mc-photo">
-                                        <i class="bi bi-person-fill"></i>
+
+                                    <!-- Body: Details & Photo -->
+                                    <div style="display: flex; justify-content: space-between; flex: 1;">
+                                        <div style="display: flex; flex-direction: column; gap: 6px; padding-top: 5px;">
+                                            <div style="line-height: 1.1;">
+                                                <div style="font-size: 0.52rem; font-weight: 900; color: #111;">Adı
+                                                    Soyadı <span
+                                                        style="font-weight: 500; font-style: italic; color: #4b5563;">/
+                                                        Name Surname</span></div>
+                                                <div id="visual-card-holder"
+                                                    style="font-size: 0.6rem; font-weight: 700; color: #111; margin-top: 1px; min-height: 10px;">
+                                                    Güneş Sözer</div>
+                                            </div>
+                                            <div style="line-height: 1.1;">
+                                                <div style="font-size: 0.52rem; font-weight: 900; color: #111;">Bölüm
+                                                    <span
+                                                        style="font-weight: 500; font-style: italic; color: #4b5563;">/
+                                                        Department</span>
+                                                </div>
+                                                <div
+                                                    style="font-size: 0.6rem; font-weight: 700; color: #111; margin-top: 1px; min-height: 10px;">
+                                                    Yazılım Mühendisliği</div>
+                                            </div>
+                                            <div style="line-height: 1.1;">
+                                                <div style="font-size: 0.52rem; font-weight: 900; color: #111;">Program
+                                                </div>
+                                                <div
+                                                    style="font-size: 0.6rem; font-weight: 700; color: #111; margin-top: 1px; min-height: 10px;">
+                                                    Tezli Yüksek Lisans</div>
+                                            </div>
+                                            <div style="line-height: 1.1;">
+                                                <div style="font-size: 0.52rem; font-weight: 900; color: #111;">
+                                                    Mezuniyet Tarihi <span
+                                                        style="font-weight: 500; font-style: italic; color: #4b5563;">/
+                                                        Graduate Date</span></div>
+                                                <div
+                                                    style="font-size: 0.6rem; font-weight: 700; color: #111; margin-top: 1px; min-height: 10px;">
+                                                    2025</div>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            style="width: 75px; height: 95px; border: 1px solid #4b5563; background-color: #2c2f33; display: flex; align-items: center; justify-content: center; margin-right: 15px; margin-top: 5px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
+                                            <i class="bi bi-person-fill" style="font-size: 4.5rem; color: #111;"></i>
+                                        </div>
+                                    </div>
+
+                                    <!-- Footer -->
+                                    <div
+                                        style="font-size: 0.55rem; font-weight: 800; color: #111; text-align: center; margin-top: auto; letter-spacing: 0.5px;">
+                                        Kart No:
                                     </div>
                                 </div>
                             </div>
