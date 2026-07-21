@@ -402,7 +402,7 @@
            Mezun Kart Başvuru Formu (Application Form) CSS
            ------------------------------------------------------------- */
         .app-form-card {
-            max-width: 600px;
+            max-width: 800px;
             margin: 40px auto;
             border: 1px solid #cbd5e1;
             border-radius: 8px;
@@ -1037,15 +1037,23 @@
             <div class="app-form-card bg-white mt-5">
                 <h3 id="app-form-title" class="fw-bold fs-4 text-center mb-4 text-dark" style="font-family: 'Outfit';">
                     Mezun Kart Başvuru Formu</h3>
-                <p id="app-form-subtitle" class="text-muted text-center mb-4 small">Lütfen kartınızın size
-                    ulaştırılabilmesi için aşağıdaki bilgileri eksiksiz doldurunuz.</p>
+                <p id="app-form-subtitle" class="text-muted text-center mb-4 small"></p>
 
                 <form onsubmit="event.preventDefault(); submitGraduateCardApp();">
-                    <div class="mb-3">
-                        <label for="app-name-surname" class="form-label fw-semibold text-secondary small">Kart Üzerinde
-                            Yazacak Ad Soyad</label>
-                        <input type="text" class="form-control bg-light" id="app-name-surname" value="Güneş Sözer"
-                            readonly required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="app-name-surname" class="form-label fw-semibold text-secondary small">Kart
+                                Üzerinde Yazacak Ad Soyad</label>
+                            <input type="text" class="form-control bg-light" id="app-name-surname" value="Güneş Sözer"
+                                readonly required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="app-grad-year" class="form-label fw-semibold text-secondary small">Mezuniyet
+                                Yılı</label>
+                            <select class="form-select bg-light" id="app-grad-year" disabled required>
+                                <option value="2025">2025</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="mb-3">
@@ -1055,25 +1063,18 @@
                             value="Yazılım Mühendisliği Tezli Yüksek Lisans Programı" readonly required>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="app-grad-year" class="form-label fw-semibold text-secondary small">Mezuniyet
-                            Yılı</label>
-                        <select class="form-select bg-light" id="app-grad-year" disabled required>
-                            <option value="2025">2025</option>
-
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="app-email" class="form-label fw-semibold text-secondary small">E-posta</label>
-                        <input type="email" class="form-control bg-light" id="app-email" value="test@gmail.com" readonly
-                            required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="app-phone" class="form-label fw-semibold text-secondary small">Cep Telefonu</label>
-                        <input type="text" class="form-control bg-light" id="app-phone" value="05555555555" readonly
-                            required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="app-email" class="form-label fw-semibold text-secondary small">E-posta</label>
+                            <input type="email" class="form-control bg-light" id="app-email" value="test@gmail.com"
+                                readonly required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="app-phone" class="form-label fw-semibold text-secondary small">Cep
+                                Telefonu</label>
+                            <input type="text" class="form-control bg-light" id="app-phone" value="05555555555" readonly
+                                required>
+                        </div>
                     </div>
 
                     <div class="mb-3">
@@ -1089,16 +1090,47 @@
                     </div>
 
                     <!-- Kayıp Kart Ödeme Uyarısı (Varsayılan gizli) -->
-                    <div id="lost-card-payment-warning"
-                        class="alert alert-warning align-items-start gap-2 mt-3 mb-3 py-2 px-3 d-none"
-                        style="font-size: 0.82rem; font-weight: 500;">
+                    <div id="lost-card-payment-warning" class="alert alert-warning align-items-start gap-2 mt-3 mb-3 py-2 px-3 d-none" style="font-size: 0.85rem;">
                         <i class="bi bi-exclamation-triangle-fill fs-5 text-warning mt-1"></i>
-                        <span>Kartınızın yeniden basımı için <strong>IBAN000000000</strong> hesabına <strong>70
-                                TL</strong> ödeme yapılması gerekmektedir.</span>
+                        <div class="w-100">
+                            <p class="mb-3">Öncelikle aşağıda bilgileri verilen üniversitemizin banka hesabına 20 TL kart değişim ücreti
+                                ödemenizi gönderiniz ve dekontu ikckart@ikcu.edu.tr adresine e-posta olarak iletiniz.<br>
+                                Ödeme açıklamasında adınızı soyadınızı ve TC kimlik numaranızı yazınız ve kayıp mezun kart
+                                ödemesi olduğunu belirtiniz. Aşağıda açıklama formatı belirtilmiştir.</p>
+    
+                            <p class="mb-3">Banka: ZİRAAT Bankası Girne Bulvarı / İzmir Şubesi<br>
+                                Alıcı: İzmir Katip Çelebi Üniversitesi</p>
+    
+                            <p class="mb-3">IBAN: TR15 0001 0019 0361 0669 5450 49<br>
+                                Açıklama (Bilgilerinizi belirtilen formatta giriniz) : Adınız Soyadınız - TC Kimlik
+                                Numaranız - kayıp mezun kart ödemesi</p>
+    
+                            <p class="mb-3">Ödemenizi ATM veya banka şubesinden yaptıysanız dekontun üzerindeki bilgiler okunaklı
+                                    olacak şekilde fotoğrafını çekerek ikckart@ikcu.edu.tr adresine e-posta olarak
+                                    gönderiniz.<br>
+                                Eğer ödemenizi gerçekleştirdiyseniz ve dekontunuzu eposta olarak gönderdiyseniz
+                                    <span class="text-danger">BAŞVURUMU GÖNDER</span> düğmesine basınız. <span
+                                        class="text-danger">BAŞVURUMU GÖNDER</span> düğmesine bastıktan sonra
+                                    başvurunuz gönderilecek, şu anki mevcut kartınız bloke olacak ve kullanıma
+                                    kapatılacaktır.
+                            </p>
+    
+                            <p class="mb-3">Henüz bu işlemi gerçekleştirmediyseniz Ana Sayfaya dönmek için <a href="#"
+                                    class="text-primary text-decoration-none">Tıklayınız.</a></p>
+    
+                            <div class="form-check mt-3">
+                                <input class="form-check-input" type="checkbox" id="paymentConfirm">
+                                <label class="form-check-label text-danger" for="paymentConfirm">
+                                    Ödeme dekontumu ikckart@ikcu.edu.tr adresine gönderdiğimi beyan ederim. Kayıp
+                                    başvurusunda bulunuyor olduğum mevcut kartımın bloke olacağını ve kullanıma
+                                    kapatılacağını okudum ve kabul ettim.
+                                </label>
+                            </div>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100 fw-bold py-2 mt-2"
-                        style="background-color: #be185d; border: none;">Başvuruyu Tamamla</button>
+                        style="background-color: #be185d; border: none;">BAŞVURUMU GÖNDER</button>
                 </form>
             </div>
         </main>
@@ -1552,12 +1584,12 @@
 
             if (isLostCardApplication) {
                 title.textContent = 'Kayıp Kart Başvuru Formu';
-                subtitle.textContent = 'Kayıp kartınızın yeniden basımı için aşağıdaki bilgileri eksiksiz doldurunuz.';
+                subtitle.textContent = '';
                 paymentWarning.classList.remove('d-none');
                 paymentWarning.classList.add('d-flex');
             } else {
                 title.textContent = 'Mezun Kart Başvuru Formu';
-                subtitle.textContent = 'Lütfen kartınızın size ulaştırılabilmesi için aşağıdaki bilgileri eksiksiz doldurunuz.';
+                subtitle.textContent = '';
                 paymentWarning.classList.remove('d-flex');
                 paymentWarning.classList.add('d-none');
             }
